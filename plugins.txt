@@ -6,3 +6,4 @@ blueocean
 credentials-binding
 greenballs
 gatling
+jacoco
