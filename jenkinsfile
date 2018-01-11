@@ -19,10 +19,19 @@ pipeline {
                 }                  
         }              
     }
-    post {
+    post ('Reports') {
         always {
             gatlingArchive()
             step( [ $class: 'JacocoPublisher' ] )
+        }
+         success {
+            echo 'Succeeeded!'
+        }
+        unstable {
+            echo 'Unstable :/'
+        }
+        failure {
+            echo 'Failed :('
         }
     }
 }
