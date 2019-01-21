@@ -7,7 +7,43 @@
 <properties/>
 <definition class="org.jenkinsci.plugins.workflow.cps.CpsFlowDefinition" plugin="workflow-cps@2.62">
 <script>
-pipeline { agent any stages { stage('Preparation') { steps { deleteDir() git 'https://github.com/jhipster/jhipster-sample-app' } } stage('Build') { steps { sh './mvnw clean package -Pprod -DskipTests' } } stage('Test') { steps { sh './mvnw clean test' sh './mvnw gatling:execute' } } } post ('Reports') { always { gatlingArchive() step( [ $class: 'JacocoPublisher' ] ) } success { echo 'Succeeeded!' } unstable { echo 'Unstable :/' } failure { echo 'Failed :(' } } }
+  pipeline {
+    agent any 
+    stages {
+        stage('Preparation') {                  
+                steps {
+                    deleteDir()
+                    git 'https://github.com/jhipster/jhipster-sample-app'
+                }
+        }
+        stage('Build') {
+                steps {
+                    sh './mvnw clean package -Pprod -DskipTests'
+                }                  
+        }
+        stage('Test') {
+                steps {
+                    sh './mvnw clean test'
+                    sh './mvnw gatling:execute'
+                }                  
+        }              
+    }
+    post ('Reports') {
+        always {
+            gatlingArchive()
+            step( [ $class: 'JacocoPublisher' ] )
+        }
+         success {
+            echo 'Succeeeded!'
+        }
+        unstable {
+            echo 'Unstable :/'
+        }
+        failure {
+            echo 'Failed :('
+        }
+    }
+}
 </script>
 <sandbox>true</sandbox>
 </definition>
