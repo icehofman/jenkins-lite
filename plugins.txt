@@ -5,5 +5,3 @@ docker-workflow
 blueocean
 credentials-binding
 greenballs
-gatling
-jacoco

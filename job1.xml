@@ -13,36 +13,20 @@
         stage('Preparation') {                  
                 steps {
                     deleteDir()
-                    git 'https://github.com/jhipster/jhipster-sample-app'
+                    sh 'echo "Preparation"'
                 }
         }
         stage('Build') {
                 steps {
-                    sh './mvnw clean package -Pprod -DskipTests'
+                    sh 'echo "Build"'
                 }                  
         }
         stage('Test') {
                 steps {
-                    sh './mvnw clean test'
-                    sh './mvnw gatling:execute'
+                    sh 'echo "Test"'
                 }                  
         }              
-    }
-    post ('Reports') {
-        always {
-            gatlingArchive()
-            step( [ $class: 'JacocoPublisher' ] )
-        }
-         success {
-            echo 'Succeeeded!'
-        }
-        unstable {
-            echo 'Unstable :/'
-        }
-        failure {
-            echo 'Failed :('
-        }
-    }
+    }    
 }
 </script>
 <sandbox>true</sandbox>
