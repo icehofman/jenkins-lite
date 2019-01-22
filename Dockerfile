@@ -6,6 +6,10 @@ ENV JENKINS_PASS admin
 
 USER root
 
+RUN apk --update --no-cache add docker
+
+RUN apk add --update shadow
+
 RUN groupmod -g 1000 jenkins
 RUN usermod -u 1000 -g 1000 jenkins
 RUN chown -R 1000:1000 /var/jenkins_home
