@@ -4,5 +4,7 @@ workflow-aggregator
 docker-workflow
 blueocean
 credentials-binding
+docker-plugin
+docker-slaves
 docker-swarm
 greenballs
