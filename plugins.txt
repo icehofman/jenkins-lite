@@ -8,3 +8,4 @@ docker-plugin
 docker-slaves
 docker-swarm
 greenballs
+mstest
